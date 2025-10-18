@@ -18,7 +18,10 @@ const apartments = [
     area: 180,
     images: [
       'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800',
-      'https://images.unsplash.com/photo-1502672260066-6bc35f0f1edb?w=800',
+      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800',
+      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800',
+      'https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?w=800',
     ],
   },
   {
@@ -34,6 +37,10 @@ const apartments = [
     images: [
       'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800',
       'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800',
+      'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800',
+      'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=800',
+      'https://images.unsplash.com/photo-1560185007-5f0bb1866cab?w=800',
+      'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800',
     ],
   },
   {
@@ -48,6 +55,9 @@ const apartments = [
     area: 65,
     images: [
       'https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=800',
+      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800',
+      'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800',
+      'https://images.unsplash.com/photo-1556020685-ae41abfc9365?w=800',
     ],
   },
   {
@@ -63,6 +73,9 @@ const apartments = [
     images: [
       'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800',
       'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800',
+      'https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800',
+      'https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?w=800',
     ],
   },
   {
@@ -75,7 +88,12 @@ const apartments = [
     bedrooms: 2,
     bathrooms: 2,
     area: 135,
-    images: ['https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800'],
+    images: [
+      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800',
+      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800',
+      'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800',
+      'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800',
+    ],
   },
   {
     unitNumber: 'F-501',
@@ -89,6 +107,9 @@ const apartments = [
     area: 95,
     images: [
       'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800',
+      'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800',
+      'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800',
+      'https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?w=800',
     ],
   },
   {
@@ -104,6 +125,9 @@ const apartments = [
     images: [
       'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800',
       'https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?w=800',
+      'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800',
+      'https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800',
+      'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800',
     ],
   },
   {
@@ -118,6 +142,9 @@ const apartments = [
     area: 170,
     images: [
       'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800',
+      'https://images.unsplash.com/photo-1560185007-5f0bb1866cab?w=800',
+      'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800',
+      'https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?w=800',
     ],
   },
   {
@@ -132,6 +159,10 @@ const apartments = [
     area: 145,
     images: [
       'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800',
+      'https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800',
+      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800',
+      'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800',
+      'https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?w=800',
     ],
   },
   {
@@ -146,7 +177,11 @@ const apartments = [
     area: 190,
     images: [
       'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800',
-      'https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800',
+      'https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?w=800',
+      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800',
+      'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800',
+      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800',
     ],
   },
   {
@@ -159,7 +194,11 @@ const apartments = [
     bedrooms: 1,
     bathrooms: 1,
     area: 75,
-    images: ['https://images.unsplash.com/photo-1556020685-ae41abfc9365?w=800'],
+    images: [
+      'https://images.unsplash.com/photo-1556020685-ae41abfc9365?w=800',
+      'https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=800',
+      'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800',
+    ],
   },
   {
     unitNumber: 'L-506',
@@ -174,6 +213,11 @@ const apartments = [
     images: [
       'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800',
       'https://images.unsplash.com/photo-1600563438938-a9a27216b4f5?w=800',
+      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800',
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800',
+      'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=800',
+      'https://images.unsplash.com/photo-1560185007-5f0bb1866cab?w=800',
+      'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800',
     ],
   },
   {
@@ -188,6 +232,10 @@ const apartments = [
     area: 250,
     images: [
       'https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800',
+      'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800',
+      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800',
+      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800',
+      'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800',
     ],
   },
   {
@@ -202,6 +250,9 @@ const apartments = [
     area: 125,
     images: [
       'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800',
+      'https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?w=800',
+      'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800',
+      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800',
     ],
   },
   {
@@ -216,6 +267,10 @@ const apartments = [
     area: 195,
     images: [
       'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800',
+      'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800',
+      'https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800',
+      'https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?w=800',
     ],
   },
   {
@@ -230,6 +285,9 @@ const apartments = [
     area: 110,
     images: [
       'https://images.unsplash.com/photo-1600566752229-250ed79470d1?w=800',
+      'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800',
+      'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800',
+      'https://images.unsplash.com/photo-1556020685-ae41abfc9365?w=800',
     ],
   },
   {
@@ -244,6 +302,10 @@ const apartments = [
     area: 175,
     images: [
       'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800',
+      'https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800',
+      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800',
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800',
+      'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=800',
     ],
   },
   {
@@ -258,6 +320,9 @@ const apartments = [
     area: 160,
     images: [
       'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800',
+      'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800',
+      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800',
     ],
   },
   {
@@ -272,6 +337,8 @@ const apartments = [
     area: 55,
     images: [
       'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800',
+      'https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=800',
+      'https://images.unsplash.com/photo-1556020685-ae41abfc9365?w=800',
     ],
   },
   {
@@ -286,6 +353,9 @@ const apartments = [
     area: 140,
     images: [
       'https://images.unsplash.com/photo-1600585154084-4e5fe7c39198?w=800',
+      'https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?w=800',
+      'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800',
+      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800',
     ],
   },
   {
@@ -300,7 +370,12 @@ const apartments = [
     area: 300,
     images: [
       'https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=800',
-      'https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?w=800',
+      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800',
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800',
+      'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=800',
+      'https://images.unsplash.com/photo-1560185007-5f0bb1866cab?w=800',
+      'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800',
+      'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800',
     ],
   },
   {
@@ -315,6 +390,9 @@ const apartments = [
     area: 100,
     images: [
       'https://images.unsplash.com/photo-1600566753151-384129cf4e3e?w=800',
+      'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800',
+      'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800',
+      'https://images.unsplash.com/photo-1600566752229-250ed79470d1?w=800',
     ],
   },
   {
@@ -329,6 +407,10 @@ const apartments = [
     area: 185,
     images: [
       'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=800',
+      'https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800',
+      'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800',
+      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800',
+      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800',
     ],
   },
   {
@@ -343,6 +425,9 @@ const apartments = [
     area: 120,
     images: [
       'https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?w=800',
+      'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800',
+      'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800',
+      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800',
     ],
   },
   {
@@ -357,7 +442,10 @@ const apartments = [
     area: 210,
     images: [
       'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800',
-      'https://images.unsplash.com/photo-1600607688969-a5bfcd646154?w=800',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800',
+      'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800',
+      'https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?w=800',
+      'https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800',
     ],
   },
   {
@@ -372,6 +460,8 @@ const apartments = [
     area: 60,
     images: [
       'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800',
+      'https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=800',
+      'https://images.unsplash.com/photo-1556020685-ae41abfc9365?w=800',
     ],
   },
   {
@@ -386,7 +476,10 @@ const apartments = [
     area: 185,
     images: [
       'https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800',
-      'https://images.unsplash.com/photo-1502672260066-6bc35f0f1edb?w=800',
+      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800',
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800',
+      'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=800',
+      'https://images.unsplash.com/photo-1560185007-5f0bb1866cab?w=800',
     ],
   },
   {
@@ -399,7 +492,12 @@ const apartments = [
     bedrooms: 3,
     bathrooms: 3,
     area: 195,
-    images: ['https://images.unsplash.com/photo-1560185007-5f0bb1866cab?w=800'],
+    images: [
+      'https://images.unsplash.com/photo-1560185007-5f0bb1866cab?w=800',
+      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800',
+      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800',
+    ],
   },
   {
     unitNumber: 'AC-402',
@@ -414,6 +512,10 @@ const apartments = [
     images: [
       'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800',
       'https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?w=800',
+      'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800',
+      'https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?w=800',
+      'https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800',
     ],
   },
   {
@@ -428,6 +530,9 @@ const apartments = [
     area: 105,
     images: [
       'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800',
+      'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800',
+      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800',
+      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800',
     ],
   },
   {
@@ -443,6 +548,11 @@ const apartments = [
     images: [
       'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=800',
       'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800',
+      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800',
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800',
+      'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800',
+      'https://images.unsplash.com/photo-1560185007-5f0bb1866cab?w=800',
+      'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800',
     ],
   },
   {
@@ -457,6 +567,9 @@ const apartments = [
     area: 100,
     images: [
       'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800',
+      'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800',
+      'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800',
+      'https://images.unsplash.com/photo-1600566752229-250ed79470d1?w=800',
     ],
   },
   {
@@ -472,6 +585,9 @@ const apartments = [
     images: [
       'https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800',
       'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800',
+      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800',
+      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800',
     ],
   },
   {
@@ -486,6 +602,9 @@ const apartments = [
     area: 175,
     images: [
       'https://images.unsplash.com/photo-1600585154084-4e5fe7c39198?w=800',
+      'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800',
+      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800',
+      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800',
     ],
   },
   {
@@ -499,7 +618,10 @@ const apartments = [
     bathrooms: 2,
     area: 130,
     images: [
-      'https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800',
+      'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800',
+      'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800',
+      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800',
+      'https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?w=800',
     ],
   },
   {
@@ -514,7 +636,11 @@ const apartments = [
     area: 290,
     images: [
       'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800',
-      'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=800',
+      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800',
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800',
+      'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=800',
+      'https://images.unsplash.com/photo-1560185007-5f0bb1866cab?w=800',
+      'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800',
     ],
   },
   {
@@ -529,6 +655,9 @@ const apartments = [
     area: 95,
     images: [
       'https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=800',
+      'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800',
+      'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800',
+      'https://images.unsplash.com/photo-1556020685-ae41abfc9365?w=800',
     ],
   },
   {
@@ -544,6 +673,11 @@ const apartments = [
     images: [
       'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800',
       'https://images.unsplash.com/photo-1600563438938-a9a27216b4f5?w=800',
+      'https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800',
+      'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800',
+      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800',
+      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800',
     ],
   },
   {
@@ -558,6 +692,9 @@ const apartments = [
     area: 145,
     images: [
       'https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?w=800',
+      'https://images.unsplash.com/photo-1600585154084-4e5fe7c39198?w=800',
+      'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800',
+      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800',
     ],
   },
   {
@@ -572,6 +709,8 @@ const apartments = [
     area: 80,
     images: [
       'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800',
+      'https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=800',
+      'https://images.unsplash.com/photo-1556020685-ae41abfc9365?w=800',
     ],
   },
   {
@@ -587,6 +726,10 @@ const apartments = [
     images: [
       'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800',
       'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800',
+      'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=800',
+      'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800',
+      'https://images.unsplash.com/photo-1560185007-5f0bb1866cab?w=800',
+      'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800',
     ],
   },
   {
@@ -601,6 +744,8 @@ const apartments = [
     area: 65,
     images: [
       'https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=800',
+      'https://images.unsplash.com/photo-1556020685-ae41abfc9365?w=800',
+      'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800',
     ],
   },
   {
@@ -615,6 +760,10 @@ const apartments = [
     area: 190,
     images: [
       'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800',
+      'https://images.unsplash.com/photo-1560185007-5f0bb1866cab?w=800',
+      'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800',
+      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800',
+      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800',
     ],
   },
   {
@@ -629,6 +778,9 @@ const apartments = [
     area: 165,
     images: [
       'https://images.unsplash.com/photo-1600566753151-384129cf4e3e?w=800',
+      'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800',
+      'https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?w=800',
     ],
   },
   {
@@ -643,6 +795,9 @@ const apartments = [
     area: 150,
     images: [
       'https://images.unsplash.com/photo-1600566752229-250ed79470d1?w=800',
+      'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800',
+      'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800',
+      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800',
     ],
   },
   {
@@ -658,6 +813,10 @@ const apartments = [
     images: [
       'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=800',
       'https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=800',
+      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800',
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800',
+      'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=800',
+      'https://images.unsplash.com/photo-1560185007-5f0bb1866cab?w=800',
     ],
   },
   {
@@ -672,6 +831,9 @@ const apartments = [
     area: 115,
     images: [
       'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800',
+      'https://images.unsplash.com/photo-1600566752229-250ed79470d1?w=800',
+      'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800',
+      'https://images.unsplash.com/photo-1556020685-ae41abfc9365?w=800',
     ],
   },
   {
@@ -686,6 +848,10 @@ const apartments = [
     area: 205,
     images: [
       'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800',
+      'https://images.unsplash.com/photo-1560185007-5f0bb1866cab?w=800',
+      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800',
+      'https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800',
+      'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800',
     ],
   },
   {
@@ -698,7 +864,12 @@ const apartments = [
     bedrooms: 2,
     bathrooms: 2,
     area: 155,
-    images: ['https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800'],
+    images: [
+      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800',
+      'https://images.unsplash.com/photo-1600585154084-4e5fe7c39198?w=800',
+      'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800',
+      'https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?w=800',
+    ],
   },
   {
     unitNumber: 'AX-408',
@@ -712,6 +883,9 @@ const apartments = [
     area: 140,
     images: [
       'https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?w=800',
+      'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800',
+      'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800',
+      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800',
     ],
   },
 ];
@@ -750,21 +924,11 @@ async function seed() {
 
     console.log(`✅ Successfully seeded ${apartments.length} apartments!`);
     console.log('📊 Summary:');
-    console.log(
-      `   - O West: ${apartments.filter((a) => a.project === 'O West').length}`,
-    );
-    console.log(
-      `   - New Giza: ${apartments.filter((a) => a.project === 'New Giza').length}`,
-    );
-    console.log(
-      `   - Il Bosco: ${apartments.filter((a) => a.project === 'Il Bosco').length}`,
-    );
-    console.log(
-      `   - City Gate: ${apartments.filter((a) => a.project === 'City Gate').length}`,
-    );
-    console.log(
-      `   - Villette: ${apartments.filter((a) => a.project === 'Villette').length}`,
-    );
+    console.log(`   - O West: ${apartments.filter((a) => a.project === 'O West').length}`);
+    console.log(`   - New Giza: ${apartments.filter((a) => a.project === 'New Giza').length}`);
+    console.log(`   - Il Bosco: ${apartments.filter((a) => a.project === 'Il Bosco').length}`);
+    console.log(`   - City Gate: ${apartments.filter((a) => a.project === 'City Gate').length}`);
+    console.log(`   - Villette: ${apartments.filter((a) => a.project === 'Villette').length}`);
   } catch (error) {
     console.error('❌ Error seeding database:', error);
     throw error;

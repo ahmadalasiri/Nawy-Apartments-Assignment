@@ -44,15 +44,7 @@ export default function SearchFilters({
     }, 500);
 
     return () => clearTimeout(timer);
-  }, [
-    search,
-    project,
-    minPrice,
-    maxPrice,
-    bedrooms,
-    bathrooms,
-    onFiltersChange,
-  ]);
+  }, [search, project, minPrice, maxPrice, bedrooms, bathrooms]);
 
   const clearFilters = () => {
     setSearch("");

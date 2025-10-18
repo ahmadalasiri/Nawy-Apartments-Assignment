@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import type { SearchFilters } from "@/lib/types";
 
 interface SearchFiltersProps {
@@ -14,6 +14,8 @@ export default function SearchFilters({
   onFiltersChange,
   initialFilters = {},
 }: SearchFiltersProps) {
+  const isInitialMount = useRef(true);
+  const isSyncingFromProps = useRef(false);
   const [search, setSearch] = useState(initialFilters.search || "");
   const [project, setProject] = useState(initialFilters.project || "");
   const [minPrice, setMinPrice] = useState(
@@ -29,8 +31,34 @@ export default function SearchFilters({
     initialFilters.bathrooms?.toString() || ""
   );
 
+  // Sync local state with initialFilters when they change (e.g., when navigating back)
+  useEffect(() => {
+    isSyncingFromProps.current = true;
+    setSearch(initialFilters.search || "");
+    setProject(initialFilters.project || "");
+    setMinPrice(initialFilters.minPrice?.toString() || "");
+    setMaxPrice(initialFilters.maxPrice?.toString() || "");
+    setBedrooms(initialFilters.bedrooms?.toString() || "");
+    setBathrooms(initialFilters.bathrooms?.toString() || "");
+    // Reset the flag after a short delay to allow state updates to complete
+    setTimeout(() => {
+      isSyncingFromProps.current = false;
+    }, 100);
+  }, [initialFilters]);
+
   // Debounce search
   useEffect(() => {
+    // Skip the initial mount to prevent calling onFiltersChange on page load
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
+
+    // Skip if we're syncing from props (URL changes from navigation)
+    if (isSyncingFromProps.current) {
+      return;
+    }
+
     const timer = setTimeout(() => {
       const filters: SearchFilters = {};
       if (search) filters.search = search;
@@ -44,7 +72,15 @@ export default function SearchFilters({
     }, 500);
 
     return () => clearTimeout(timer);
-  }, [search, project, minPrice, maxPrice, bedrooms, bathrooms]);
+  }, [
+    search,
+    project,
+    minPrice,
+    maxPrice,
+    bedrooms,
+    bathrooms,
+    onFiltersChange,
+  ]);
 
   const clearFilters = () => {
     setSearch("");

@@ -1,8 +1,8 @@
 import { Metadata } from "next";
-import Link from "next/link";
 import Image from "next/image";
 import { apartmentsAPI } from "@/lib/api";
 import { notFound } from "next/navigation";
+import BackButton from "@/components/BackButton";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -56,25 +56,7 @@ export default async function ApartmentDetailPage({ params }: PageProps) {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Back Button */}
-      <Link
-        href="/"
-        className="inline-flex items-center text-primary-600 hover:text-primary-700 mb-6"
-      >
-        <svg
-          className="w-5 h-5 mr-1"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M15 19l-7-7 7-7"
-          />
-        </svg>
-        Back to Listings
-      </Link>
+      <BackButton />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Image Gallery */}

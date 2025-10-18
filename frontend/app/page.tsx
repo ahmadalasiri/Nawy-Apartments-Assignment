@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo, useRef, useCallback } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import SearchFilters from "@/components/SearchFilters";
 import ApartmentGrid from "@/components/ApartmentGrid";
@@ -11,7 +11,6 @@ import type { Apartment, SearchFilters as Filters } from "@/lib/types";
 export default function HomePage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const isInitialMount = useRef(true);
 
   const [apartments, setApartments] = useState<Apartment[]>([]);
   const [projects, setProjects] = useState<string[]>([]);
@@ -19,12 +18,12 @@ export default function HomePage() {
   const [error, setError] = useState<string | null>(null);
   const [backendAvailable, setBackendAvailable] = useState(true);
 
-  // Pagination state
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [total, setTotal] = useState(0);
+  // Initialize page and filters from URL - recomputed when searchParams change
+  const initialPage = useMemo(() => {
+    const page = searchParams.get("page");
+    return page ? parseInt(page, 10) : 1;
+  }, [searchParams]);
 
-  // Parse initial filters from URL - memoized to prevent re-creation
   const initialFilters = useMemo((): Filters => {
     const filters: Filters = {};
     const search = searchParams.get("search");
@@ -33,7 +32,6 @@ export default function HomePage() {
     const maxPrice = searchParams.get("maxPrice");
     const bedrooms = searchParams.get("bedrooms");
     const bathrooms = searchParams.get("bathrooms");
-    const page = searchParams.get("page");
 
     if (search) filters.search = search;
     if (project) filters.project = project;
@@ -45,16 +43,18 @@ export default function HomePage() {
     return filters;
   }, [searchParams]);
 
-  // Set initial page from URL
-  useEffect(() => {
-    const page = searchParams.get("page");
-    if (page && isInitialMount.current) {
-      setCurrentPage(parseInt(page));
-      isInitialMount.current = false;
-    }
-  }, [searchParams]);
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(initialPage);
+  const [totalPages, setTotalPages] = useState(1);
+  const [total, setTotal] = useState(0);
 
   const [filters, setFilters] = useState<Filters>(initialFilters);
+
+  // Sync state when URL parameters change (e.g., navigating back from detail page)
+  useEffect(() => {
+    setCurrentPage(initialPage);
+    setFilters(initialFilters);
+  }, [initialPage, initialFilters]);
 
   // Fetch projects
   useEffect(() => {
@@ -140,7 +140,7 @@ export default function HomePage() {
 
       const queryString = params.toString();
       const newUrl = queryString ? `/?${queryString}` : "/";
-      router.replace(newUrl, { scroll: false });
+      router.push(newUrl, { scroll: false });
     },
     [router]
   );
@@ -163,23 +163,13 @@ export default function HomePage() {
 
       const queryString = params.toString();
       const newUrl = queryString ? `/?${queryString}` : "/";
-      router.replace(newUrl, { scroll: false });
+      router.push(newUrl, { scroll: false });
     },
     [filters, router]
   );
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold text-gray-900 mb-2">
-          Discover Your Next Home
-        </h1>
-        <p className="text-lg text-gray-600">
-          Browse {total} luxury apartments in top compounds across Egypt
-        </p>
-      </div>
-
       {/* Filters */}
       <SearchFilters
         projects={projects}

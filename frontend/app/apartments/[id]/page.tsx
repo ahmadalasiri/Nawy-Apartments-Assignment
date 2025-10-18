@@ -31,7 +31,7 @@ export default async function ApartmentDetailPage({ params }: PageProps) {
   try {
     const { id } = await params;
     apartment = await apartmentsAPI.getById(id);
-  } catch (error) {
+  } catch {
     notFound();
   }
 

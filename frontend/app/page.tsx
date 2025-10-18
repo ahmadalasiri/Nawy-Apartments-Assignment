@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import SearchFilters from "@/components/SearchFilters";
 import ApartmentGrid from "@/components/ApartmentGrid";
@@ -17,6 +17,12 @@ export default function HomePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [backendAvailable, setBackendAvailable] = useState(true);
+
+  // Use useRef to persist cache across re-renders without causing re-fetches
+  const apartmentsCacheRef = useRef<
+    Map<string, { data: Apartment[]; totalPages: number; total: number }>
+  >(new Map());
+  const projectsCacheRef = useRef<string[] | null>(null);
 
   // Initialize page and filters from URL - recomputed when searchParams change
   const initialPage = useMemo(() => {
@@ -50,6 +56,25 @@ export default function HomePage() {
 
   const [filters, setFilters] = useState<Filters>(initialFilters);
 
+  // Generate cache key from filters and page
+  const generateCacheKey = useCallback(
+    (pageNum: number, filterParams: Filters): string => {
+      const parts: string[] = [`page:${pageNum}`];
+      if (filterParams.search) parts.push(`search:${filterParams.search}`);
+      if (filterParams.project) parts.push(`project:${filterParams.project}`);
+      if (filterParams.minPrice !== undefined)
+        parts.push(`minPrice:${filterParams.minPrice}`);
+      if (filterParams.maxPrice !== undefined)
+        parts.push(`maxPrice:${filterParams.maxPrice}`);
+      if (filterParams.bedrooms !== undefined)
+        parts.push(`bedrooms:${filterParams.bedrooms}`);
+      if (filterParams.bathrooms !== undefined)
+        parts.push(`bathrooms:${filterParams.bathrooms}`);
+      return parts.join("|");
+    },
+    []
+  );
+
   // Sync state when URL parameters change (e.g., navigating back from detail page)
   useEffect(() => {
     setCurrentPage(initialPage);
@@ -60,9 +85,18 @@ export default function HomePage() {
   useEffect(() => {
     if (!backendAvailable) return;
 
+    // Check cache first
+    if (projectsCacheRef.current) {
+      setProjects(projectsCacheRef.current);
+      return;
+    }
+
     apartmentsAPI
       .getProjects()
-      .then(setProjects)
+      .then((data) => {
+        setProjects(data);
+        projectsCacheRef.current = data;
+      })
       .catch((err) => {
         console.error("Failed to fetch projects:", err);
         if (err.code === "ERR_NETWORK" || err.code === "ECONNREFUSED") {
@@ -80,6 +114,19 @@ export default function HomePage() {
     }
 
     const fetchApartments = async () => {
+      // Generate cache key for current request
+      const cacheKey = generateCacheKey(currentPage, filters);
+
+      // Check cache first
+      const cachedData = apartmentsCacheRef.current.get(cacheKey);
+      if (cachedData) {
+        setApartments(cachedData.data);
+        setTotalPages(cachedData.totalPages);
+        setTotal(cachedData.total);
+        setLoading(false);
+        return;
+      }
+
       setLoading(true);
       setError(null);
 
@@ -94,6 +141,13 @@ export default function HomePage() {
         setTotalPages(response.meta.totalPages);
         setTotal(response.meta.total);
         setBackendAvailable(true);
+
+        // Store in cache
+        apartmentsCacheRef.current.set(cacheKey, {
+          data: response.data,
+          totalPages: response.meta.totalPages,
+          total: response.meta.total,
+        });
       } catch (err: any) {
         console.error("Error fetching apartments:", err);
 
@@ -118,12 +172,14 @@ export default function HomePage() {
     };
 
     fetchApartments();
-  }, [filters, currentPage, backendAvailable]);
+  }, [filters, currentPage, backendAvailable, generateCacheKey]);
 
   const handleFiltersChange = useCallback(
     (newFilters: Filters) => {
       setFilters(newFilters);
-      setCurrentPage(1); // Reset to first page when filters change
+      setCurrentPage(1);
+      // Clear cache when filters change
+      apartmentsCacheRef.current.clear();
 
       // Update URL
       const params = new URLSearchParams();

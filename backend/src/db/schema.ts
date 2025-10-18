@@ -1,4 +1,14 @@
-import { pgTable, uuid, varchar, text, decimal, integer, timestamp, index, json } from 'drizzle-orm/pg-core';
+import {
+  pgTable,
+  uuid,
+  varchar,
+  text,
+  decimal,
+  integer,
+  timestamp,
+  index,
+  json,
+} from 'drizzle-orm/pg-core';
 
 // Apartments table
 export const apartments = pgTable(
@@ -17,10 +27,9 @@ export const apartments = pgTable(
     createdAt: timestamp('created_at').notNull().defaultNow(),
     updatedAt: timestamp('updated_at').notNull().defaultNow(),
   },
-  (table) => ({
-    projectIdx: index('project_idx').on(table.project),
-    unitNumberIdx: index('unit_number_idx').on(table.unitNumber),
-    projectUnitIdx: index('project_unit_idx').on(table.project, table.unitNumber),
-  })
+  (table) => [
+    index('project_idx').on(table.project),
+    index('unit_number_idx').on(table.unitNumber),
+    index('project_unit_idx').on(table.project, table.unitNumber),
+  ],
 );
-

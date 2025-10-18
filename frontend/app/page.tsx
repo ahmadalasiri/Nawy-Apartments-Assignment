@@ -120,47 +120,53 @@ export default function HomePage() {
     fetchApartments();
   }, [filters, currentPage, backendAvailable]);
 
-  const handleFiltersChange = useCallback((newFilters: Filters) => {
-    setFilters(newFilters);
-    setCurrentPage(1); // Reset to first page when filters change
+  const handleFiltersChange = useCallback(
+    (newFilters: Filters) => {
+      setFilters(newFilters);
+      setCurrentPage(1); // Reset to first page when filters change
 
-    // Update URL
-    const params = new URLSearchParams();
-    if (newFilters.search) params.set("search", newFilters.search);
-    if (newFilters.project) params.set("project", newFilters.project);
-    if (newFilters.minPrice)
-      params.set("minPrice", newFilters.minPrice.toString());
-    if (newFilters.maxPrice)
-      params.set("maxPrice", newFilters.maxPrice.toString());
-    if (newFilters.bedrooms)
-      params.set("bedrooms", newFilters.bedrooms.toString());
-    if (newFilters.bathrooms)
-      params.set("bathrooms", newFilters.bathrooms.toString());
+      // Update URL
+      const params = new URLSearchParams();
+      if (newFilters.search) params.set("search", newFilters.search);
+      if (newFilters.project) params.set("project", newFilters.project);
+      if (newFilters.minPrice)
+        params.set("minPrice", newFilters.minPrice.toString());
+      if (newFilters.maxPrice)
+        params.set("maxPrice", newFilters.maxPrice.toString());
+      if (newFilters.bedrooms)
+        params.set("bedrooms", newFilters.bedrooms.toString());
+      if (newFilters.bathrooms)
+        params.set("bathrooms", newFilters.bathrooms.toString());
 
-    const queryString = params.toString();
-    const newUrl = queryString ? `/?${queryString}` : "/";
-    router.replace(newUrl, { scroll: false });
-  }, [router]);
+      const queryString = params.toString();
+      const newUrl = queryString ? `/?${queryString}` : "/";
+      router.replace(newUrl, { scroll: false });
+    },
+    [router]
+  );
 
-  const handlePageChange = useCallback((page: number) => {
-    setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  const handlePageChange = useCallback(
+    (page: number) => {
+      setCurrentPage(page);
+      window.scrollTo({ top: 0, behavior: "smooth" });
 
-    // Update URL with new page
-    const params = new URLSearchParams();
-    if (filters.search) params.set("search", filters.search);
-    if (filters.project) params.set("project", filters.project);
-    if (filters.minPrice) params.set("minPrice", filters.minPrice.toString());
-    if (filters.maxPrice) params.set("maxPrice", filters.maxPrice.toString());
-    if (filters.bedrooms) params.set("bedrooms", filters.bedrooms.toString());
-    if (filters.bathrooms)
-      params.set("bathrooms", filters.bathrooms.toString());
-    if (page > 1) params.set("page", page.toString());
+      // Update URL with new page
+      const params = new URLSearchParams();
+      if (filters.search) params.set("search", filters.search);
+      if (filters.project) params.set("project", filters.project);
+      if (filters.minPrice) params.set("minPrice", filters.minPrice.toString());
+      if (filters.maxPrice) params.set("maxPrice", filters.maxPrice.toString());
+      if (filters.bedrooms) params.set("bedrooms", filters.bedrooms.toString());
+      if (filters.bathrooms)
+        params.set("bathrooms", filters.bathrooms.toString());
+      if (page > 1) params.set("page", page.toString());
 
-    const queryString = params.toString();
-    const newUrl = queryString ? `/?${queryString}` : "/";
-    router.replace(newUrl, { scroll: false });
-  }, [filters, router]);
+      const queryString = params.toString();
+      const newUrl = queryString ? `/?${queryString}` : "/";
+      router.replace(newUrl, { scroll: false });
+    },
+    [filters, router]
+  );
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

@@ -101,8 +101,11 @@ export default async function ApartmentDetailPage({ params }: PageProps) {
                     src={image}
                     alt={`${apartment.name} - Image ${index + 2}`}
                     fill
+                    loading="lazy"
                     className="object-cover"
                     sizes="(max-width: 1024px) 33vw, 16vw"
+                    placeholder="blur"
+                    blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI2UwZTBlMCIvPjwvc3ZnPg=="
                   />
                 </div>
               ))}

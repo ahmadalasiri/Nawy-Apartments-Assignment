@@ -33,8 +33,11 @@ export default function ApartmentCard({ apartment }: ApartmentCardProps) {
             src={imageUrl}
             alt={apartment.name}
             fill
+            loading="lazy"
             className="object-cover transition-transform duration-300 group-hover:scale-110"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            placeholder="blur"
+            blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI2UwZTBlMCIvPjwvc3ZnPg=="
           />
           <div className="absolute top-2 right-2 bg-white px-2 py-1 rounded-md text-xs font-semibold text-primary-600">
             {apartment.project}

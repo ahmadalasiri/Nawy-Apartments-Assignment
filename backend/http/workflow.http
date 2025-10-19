@@ -1,0 +1,216 @@
+### Variables
+@baseUrl = http://localhost:3001/api/v1
+@contentType = application/json
+
+### ========================================
+### Nawy Apartment Listing - Complete Workflow
+### ========================================
+### This file demonstrates a typical usage flow
+### Follow the steps in order for a complete test
+### ========================================
+
+### STEP 1: Get All Projects
+### Purpose: Discover available projects for filtering
+GET {{baseUrl}}/apartments/projects
+
+###
+### Expected Response:
+### ["O West", "New Giza", "Il Bosco", "City Gate", "Villette"]
+###
+
+### ========================================
+
+### STEP 2: Browse All Apartments (Page 1)
+### Purpose: View the initial listing of apartments
+GET {{baseUrl}}/apartments?page=1&limit=12
+
+###
+### Expected Response:
+### {
+###   "data": [...12 apartments...],
+###   "meta": {
+###     "total": 50,
+###     "page": 1,
+###     "limit": 12,
+###     "totalPages": 5
+###   }
+### }
+###
+
+### ========================================
+
+### STEP 3: Filter by Project
+### Purpose: User selects "O West" from project dropdown
+GET {{baseUrl}}/apartments?project=O West&page=1&limit=12
+
+###
+### Expected Response:
+### Only apartments from "O West" project
+###
+
+### ========================================
+
+### STEP 4: Add Price Range Filter
+### Purpose: User sets price range between 4M and 6M EGP
+GET {{baseUrl}}/apartments?project=O West&minPrice=4000000&maxPrice=6000000&page=1&limit=12
+
+###
+### Expected Response:
+### O West apartments priced between 4M - 6M EGP
+###
+
+### ========================================
+
+### STEP 5: Add Bedroom Filter
+### Purpose: User wants 3-bedroom apartments
+GET {{baseUrl}}/apartments?project=O West&minPrice=4000000&maxPrice=6000000&bedrooms=3&page=1&limit=12
+
+###
+### Expected Response:
+### Filtered list matching all criteria
+###
+
+### ========================================
+
+### STEP 6: Search by Name or Features
+### Purpose: User searches for "luxury" apartments
+GET {{baseUrl}}/apartments?search=luxury&project=O West&minPrice=4000000&maxPrice=6000000&bedrooms=3&page=1&limit=12
+
+###
+### Expected Response:
+### Apartments matching "luxury" in name or description
+###
+
+### ========================================
+
+### STEP 7: View Apartment Details
+### Purpose: User clicks on a specific apartment
+### Note: Copy an apartment ID from Step 2 response
+GET {{baseUrl}}/apartments/08a4c886-f202-4909-8f07-d3ce8f5520de
+
+###
+### Expected Response:
+### {
+###   "id": "08a4c886-f202-4909-8f07-d3ce8f5520de",
+###   "unitNumber": "A-101",
+###   "name": "Luxury Garden Apartment",
+###   "project": "O West",
+###   "description": "...",
+###   "price": "4500000",
+###   "bedrooms": 3,
+###   "bathrooms": 2,
+###   "area": "180",
+###   "images": [...],
+###   "createdAt": "...",
+###   "updatedAt": "..."
+### }
+###
+
+### ========================================
+
+### STEP 8: Browse Next Page
+### Purpose: User navigates to page 2
+GET {{baseUrl}}/apartments?project=O West&page=2&limit=12
+
+###
+### Expected Response:
+### Next 12 apartments from O West
+###
+
+### ========================================
+
+### STEP 9: Clear Filters and Browse All
+### Purpose: User clicks "Clear Filters" or "View All"
+GET {{baseUrl}}/apartments?page=1&limit=12
+
+###
+### Expected Response:
+### Back to full apartment listing
+###
+
+### ========================================
+
+### STEP 10: Create New Apartment (Admin Function)
+### Purpose: Add a new apartment to the listing
+POST {{baseUrl}}/apartments
+Content-Type: {{contentType}}
+
+{
+  "unitNumber": "NEW-001",
+  "name": "Modern Skyline Apartment",
+  "project": "O West",
+  "description": "Brand new apartment with stunning city views, modern finishes, and premium amenities. Located in the heart of O West with easy access to shopping and dining.",
+  "price": 5800000,
+  "bedrooms": 3,
+  "bathrooms": 2,
+  "area": 195,
+  "images": [
+    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800",
+    "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800",
+    "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?w=800"
+  ]
+}
+
+###
+### Expected Response:
+### {
+###   "id": "new-uuid",
+###   "unitNumber": "NEW-001",
+###   "name": "Modern Skyline Apartment",
+###   ...newly created apartment data...
+### }
+###
+
+### ========================================
+
+### STEP 11: Verify New Apartment Appears
+### Purpose: Confirm the new apartment is listed
+GET {{baseUrl}}/apartments?search=Modern Skyline
+
+###
+### Expected Response:
+### Should include the newly created apartment
+###
+
+### ========================================
+
+### STEP 12: View New Apartment Details
+### Purpose: Get full details of the created apartment
+### Note: Copy the ID from Step 10 response
+GET {{baseUrl}}/apartments/[PASTE-NEW-APARTMENT-ID-HERE]
+
+###
+### Expected Response:
+### Full details of the newly created apartment
+###
+
+### ========================================
+### Alternative User Journeys
+### ========================================
+
+### Journey A: Budget-Conscious Buyer
+### Looking for affordable apartments under 3M EGP
+GET {{baseUrl}}/apartments?maxPrice=3000000&page=1&limit=12
+
+### Journey B: Large Family
+### Looking for 4+ bedroom apartments
+GET {{baseUrl}}/apartments?bedrooms=4&bathrooms=3&page=1&limit=12
+
+### Journey C: Specific Location
+### Looking in New Giza with 2 bedrooms
+GET {{baseUrl}}/apartments?project=New Giza&bedrooms=2&page=1&limit=12
+
+### Journey D: Investment Property
+### Looking for studio or 1-bedroom in Il Bosco
+GET {{baseUrl}}/apartments?project=Il Bosco&bedrooms=1&page=1&limit=12
+
+### Journey E: Luxury Buyer
+### Looking for high-end properties over 7M EGP
+GET {{baseUrl}}/apartments?minPrice=7000000&page=1&limit=12
+
+### ========================================
+### End of Workflow
+### ========================================
+
+

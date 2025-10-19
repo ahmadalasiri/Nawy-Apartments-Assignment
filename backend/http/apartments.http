@@ -1,0 +1,218 @@
+### Variables
+@baseUrl = http://localhost:3001/api/v1
+@contentType = application/json
+
+### ========================================
+### Apartment Endpoints
+### ========================================
+
+### 1. Get All Apartments (Basic)
+GET {{baseUrl}}/apartments
+
+### 2. Get All Apartments with Pagination
+GET {{baseUrl}}/apartments?page=1&limit=12
+
+### 3. Get All Apartments - Page 2
+GET {{baseUrl}}/apartments?page=2&limit=12
+
+### 4. Get All Apartments - Custom Limit
+GET {{baseUrl}}/apartments?page=1&limit=20
+
+### ========================================
+### Search and Filter Apartments
+### ========================================
+
+### 5. Search by Name
+GET {{baseUrl}}/apartments?search=luxury
+
+### 6. Search by Unit Number
+GET {{baseUrl}}/apartments?search=A-101
+
+### 7. Search by Project
+GET {{baseUrl}}/apartments?search=bosco
+
+### 8. Filter by Specific Project
+GET {{baseUrl}}/apartments?project=O West
+
+### 9. Filter by Another Project
+GET {{baseUrl}}/apartments?project=Il Bosco
+
+### 10. Filter by Price Range (Min)
+GET {{baseUrl}}/apartments?minPrice=3000000
+
+### 11. Filter by Price Range (Max)
+GET {{baseUrl}}/apartments?maxPrice=5000000
+
+### 12. Filter by Price Range (Both)
+GET {{baseUrl}}/apartments?minPrice=2000000&maxPrice=5000000
+
+### 13. Filter by Bedrooms
+GET {{baseUrl}}/apartments?bedrooms=3
+
+### 14. Filter by Bathrooms
+GET {{baseUrl}}/apartments?bathrooms=2
+
+### 15. Combined Filters - Project and Price
+GET {{baseUrl}}/apartments?project=O West&minPrice=4000000&maxPrice=6000000
+
+### 16. Combined Filters - Bedrooms and Bathrooms
+GET {{baseUrl}}/apartments?bedrooms=3&bathrooms=2
+
+### 17. Complex Search - Multiple Filters
+GET {{baseUrl}}/apartments?search=garden&project=O West&minPrice=4000000&maxPrice=5000000&bedrooms=3&bathrooms=2
+
+### 18. Complex Search with Pagination
+GET {{baseUrl}}/apartments?project=O West&minPrice=3000000&page=1&limit=5
+
+### ========================================
+### Get Specific Apartment
+### ========================================
+
+### 19. Get Apartment by ID (Replace with actual UUID from previous responses)
+# Copy an ID from the list above and replace the UUID below
+GET {{baseUrl}}/apartments/08a4c886-f202-4909-8f07-d3ce8f5520de
+
+### 20. Get Another Apartment by ID
+GET {{baseUrl}}/apartments/dfcb3779-bf4d-4062-9bf8-6c53bb944e38
+
+### 21. Get Apartment - Invalid UUID (should fail with 400)
+GET {{baseUrl}}/apartments/invalid-uuid
+
+### 22. Get Apartment - Non-existent UUID (should fail with 404)
+GET {{baseUrl}}/apartments/00000000-0000-0000-0000-000000000000
+
+### ========================================
+### Get Unique Projects
+### ========================================
+
+### 23. Get All Unique Project Names
+GET {{baseUrl}}/apartments/projects
+
+### ========================================
+### Create Apartment
+### ========================================
+
+### 24. Create New Apartment
+POST {{baseUrl}}/apartments
+Content-Type: {{contentType}}
+
+{
+  "unitNumber": "Z-999",
+  "name": "Test Luxury Penthouse",
+  "project": "Test Project",
+  "description": "This is a test apartment created via API. It features modern amenities and stunning views.",
+  "price": 12000000,
+  "bedrooms": 4,
+  "bathrooms": 3,
+  "area": 350,
+  "images": [
+    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800",
+    "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800"
+  ]
+}
+
+### 25. Create Apartment with Minimal Fields
+POST {{baseUrl}}/apartments
+Content-Type: {{contentType}}
+
+{
+  "unitNumber": "Y-888",
+  "name": "Minimal Test Apartment",
+  "project": "Budget Living",
+  "description": "A simple test apartment with just the required fields.",
+  "price": 1500000,
+  "bedrooms": 1,
+  "bathrooms": 1,
+  "area": 50
+}
+
+### 26. Create Apartment - Missing Required Field (should fail)
+POST {{baseUrl}}/apartments
+Content-Type: {{contentType}}
+
+{
+  "unitNumber": "X-777",
+  "name": "Invalid Apartment",
+  "project": "Test Project",
+  "description": "Missing price field",
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "area": 100
+}
+
+### 27. Create Apartment - Negative Price (should fail)
+POST {{baseUrl}}/apartments
+Content-Type: {{contentType}}
+
+{
+  "unitNumber": "W-666",
+  "name": "Invalid Price Apartment",
+  "project": "Test Project",
+  "description": "Has negative price",
+  "price": -1000000,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "area": 100
+}
+
+### 28. Create Apartment - Invalid Data Types (should fail)
+POST {{baseUrl}}/apartments
+Content-Type: {{contentType}}
+
+{
+  "unitNumber": "V-555",
+  "name": "Invalid Types",
+  "project": "Test Project",
+  "description": "Has string for numeric fields",
+  "price": "not-a-number",
+  "bedrooms": "three",
+  "bathrooms": 1,
+  "area": 100
+}
+
+### ========================================
+### Edge Cases and Validation Tests
+### ========================================
+
+### 29. Search with Special Characters
+GET {{baseUrl}}/apartments?search=luxury & modern
+
+### 30. Search with Empty String
+GET {{baseUrl}}/apartments?search=
+
+### 31. Filter with Zero Price
+GET {{baseUrl}}/apartments?minPrice=0&maxPrice=1000000
+
+### 32. Filter with Zero Bedrooms
+GET {{baseUrl}}/apartments?bedrooms=0
+
+### 33. Filter with Large Numbers
+GET {{baseUrl}}/apartments?minPrice=100000000
+
+### 34. Pagination - Page 0 (should default to 1)
+GET {{baseUrl}}/apartments?page=0&limit=12
+
+### 35. Pagination - Limit 0 (should use default or fail)
+GET {{baseUrl}}/apartments?page=1&limit=0
+
+### 36. Pagination - Large Limit (should cap at 100 or similar)
+GET {{baseUrl}}/apartments?page=1&limit=1000
+
+### 37. Filter with Non-existent Project
+GET {{baseUrl}}/apartments?project=NonExistentProject
+
+### 38. Multiple Search Terms
+GET {{baseUrl}}/apartments?search=modern apartment bedroom
+
+### ========================================
+### Performance Testing
+### ========================================
+
+### 39. Get All Apartments (No Pagination) - Check performance
+GET {{baseUrl}}/apartments?limit=100
+
+### 40. Complex Filter with Multiple Conditions
+GET {{baseUrl}}/apartments?search=luxury&project=O West&minPrice=1000000&maxPrice=10000000&bedrooms=3&bathrooms=2&page=1&limit=50
+
+

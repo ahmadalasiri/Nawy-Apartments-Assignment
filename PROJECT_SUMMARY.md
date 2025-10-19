@@ -4,6 +4,13 @@
 
 This is a **complete full-stack apartment listing application** built for Nawy's Software Engineer Hiring Assignment. The application allows users to browse, search, and filter luxury apartments across various compounds in Egypt.
 
+## 🌐 Live Deployment
+
+**🔗 Frontend (Production): [https://adam.ahmadalasiri.info/](https://adam.ahmadalasiri.info/)**  
+**🔗 API (Production): [https://api.adam.ahmadalasiri.info/api/v1](https://api.adam.ahmadalasiri.info/api/v1)**
+
+The application is deployed on a VPS with full production features including automatic database seeding, containerized services, and optimized performance.
+
 ## Assignment Requirements ✅
 
 ### Backend Application (Node.js + TypeScript)

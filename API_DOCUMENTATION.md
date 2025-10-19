@@ -2,11 +2,21 @@
 
 Complete API reference for the Nawy Apartment Listing backend.
 
-## Base URL
+## Base URLs
+
+**Local Development:**
 
 ```
 http://localhost:3001/api/v1
 ```
+
+**Production (Live):**
+
+```
+https://api.adam.ahmadalasiri.info/api/v1
+```
+
+**Try it now:** [https://api.adam.ahmadalasiri.info/api/v1/apartments](https://api.adam.ahmadalasiri.info/api/v1/apartments)
 
 ---
 

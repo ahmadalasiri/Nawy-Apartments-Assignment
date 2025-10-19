@@ -2,6 +2,13 @@
 
 Welcome! This guide will help you get the application up and running in minutes.
 
+## 🌐 Live Demo
+
+**🔗 Frontend: [https://adam.ahmadalasiri.info/](https://adam.ahmadalasiri.info/)**  
+**🔗 API: [https://api.adam.ahmadalasiri.info/api/v1](https://api.adam.ahmadalasiri.info/api/v1)**
+
+Try the live application before setting up locally!
+
 ---
 
 ## ⚡ Quick Start (Docker - Recommended)

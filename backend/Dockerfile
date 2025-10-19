@@ -15,6 +15,9 @@ COPY . .
 # Build application
 RUN npm run build
 
+# Compile seed script separately (NestJS might not include standalone scripts)
+RUN npx tsc src/db/seed.ts --outDir dist --module commonjs --esModuleInterop
+
 # Production stage
 FROM node:20-alpine
 
@@ -36,5 +39,5 @@ COPY --from=builder /app/node_modules/.bin ./node_modules/.bin
 EXPOSE 3001
 
 # Start application (run migrations, seed if needed, then start)
-CMD ["sh", "-c", "npm run db:migrate || echo 'Migrations skipped' && npm run db:seed || echo 'Seeding skipped' && npm run start:prod"]
+CMD ["sh", "-c", "npm run db:migrate || echo 'Migrations skipped' && npm run db:seed:prod || echo 'Seeding skipped' && npm run start:prod"]
 

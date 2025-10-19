@@ -14,14 +14,14 @@ echo "🔍 Checking if database needs seeding..."
 node -e "
 const { drizzle } = require('drizzle-orm/postgres-js');
 const postgres = require('postgres');
-const { apartments } = require('./dist/db/schema.js');
+const schema = require('/app/dist/db/schema.js');
 
 async function checkAndSeed() {
   const client = postgres(process.env.DATABASE_URL);
   const db = drizzle(client);
   
   try {
-    const result = await db.select().from(apartments).limit(1);
+    const result = await db.select().from(schema.apartments).limit(1);
     
     if (result.length === 0) {
       console.log('📊 Database is empty. Running seed with 50 apartments...');

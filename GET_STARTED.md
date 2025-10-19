@@ -17,8 +17,8 @@ Perfect for testing and production deployment.
 
 ```bash
 # Clone the repository
-git clone <your-repo-url>
-cd nawy-apartment-listing
+git clone https://github.com/ahmadalasiri/Nawy-Apartments-Assignment.git
+cd Nawy-Apartments-Assignment
 
 # Create environment file
 cp example.env .env
@@ -30,9 +30,8 @@ cp example.env .env
 # Start all services (postgres, backend, frontend)
 docker-compose up -d
 
-# Wait 30 seconds for services to initialize
-# Then seed the database with 25 sample apartments
-docker-compose exec backend npm run db:seed
+# Wait 30-60 seconds for services to initialize
+# The database will automatically seed with 50 sample apartments if empty!
 ```
 
 ### Step 4: Access the Application
@@ -116,17 +115,18 @@ Use the filter panel to:
 
 - Select a specific project
 - Set price range (e.g., 2,000,000 - 5,000,000 EGP)
-- Choose number of bedrooms
-- Choose number of bathrooms
+- Choose number of bedrooms (1-6)
+- Choose number of bathrooms (1-6)
 
 ### 4. View Details
 
 Click any apartment card to see:
 
 - Full property details
-- Image gallery
-- Complete description
-- Property specifications
+- **Interactive image gallery** - Click thumbnails to change main image
+- Complete description with highlighted features
+- Property specifications (bedrooms, bathrooms, area)
+- Property information section
 
 ### 5. Pagination
 
@@ -168,9 +168,10 @@ curl http://localhost:3001/api/v1/apartments/projects
 ### Search & Filter (Bonus Feature)
 
 1. **Real-time Search** - Type in the search box, results update automatically
-2. **Multiple Filters** - Combine project, price, bedrooms, bathrooms
+2. **Multiple Filters** - Combine project, price, bedrooms (1-6), bathrooms (1-6)
 3. **Clear Filters** - One-click to reset all filters
 4. **URL State** - Share links with filters applied
+5. **Smart Matching** - Exact bedroom/bathroom matching for precise results
 
 ### Responsive Design
 
@@ -180,24 +181,26 @@ curl http://localhost:3001/api/v1/apartments/projects
 
 ### User Experience
 
-- Smooth animations and transitions
-- Loading states
-- Error handling
+- **Interactive Image Gallery** - Click any thumbnail to view in main display
+- Smooth animations and transitions with visual feedback
+- Loading states and skeleton screens
+- Comprehensive error handling with user-friendly messages
 - Professional UI inspired by Nawy.com
+- Optimized images with blur placeholders
 
 ---
 
 ## 📊 Sample Data
 
-The database includes **25 apartments** across **5 projects**:
+The database includes **50 apartments** across **5 projects**:
 
 | Project   | Apartments | Price Range      |
 | --------- | ---------- | ---------------- |
-| O West    | 6          | 3.6M - 6.5M EGP  |
-| New Giza  | 5          | 4.7M - 9.5M EGP  |
-| Il Bosco  | 5          | 1.85M - 6.8M EGP |
-| City Gate | 5          | 1.65M - 3.8M EGP |
-| Villette  | 4          | 2.1M - 2.85M EGP |
+| O West    | 12         | 3.6M - 6.5M EGP  |
+| New Giza  | 10         | 4.7M - 11.5M EGP |
+| Il Bosco  | 10         | 1.85M - 7.5M EGP |
+| City Gate | 10         | 1.65M - 4.1M EGP |
+| Villette  | 8          | 1.75M - 2.9M EGP |
 
 ---
 
@@ -234,50 +237,9 @@ docker-compose exec backend bash  # Access backend container
 
 ---
 
-## 🐛 Troubleshooting
-
-### Problem: Docker containers won't start
-
-**Solution:**
-
-```bash
-docker-compose down -v
-docker-compose up -d --build
-```
-
-### Problem: Port 3000 or 3001 already in use
-
-**Solution:** Edit `.env` file and change `FRONTEND_PORT` and `BACKEND_PORT`
-
-### Problem: Database connection error
-
-**Solution:** Check `DATABASE_URL` in `.env` file
-
-### Problem: Frontend can't reach backend
-
-**Solution:**
-
-- For Docker: Use `http://localhost:3001`
-- Check `NEXT_PUBLIC_API_URL` in `.env`
-
-### Problem: Apartments not showing
-
-**Solution:** Run the seed command:
-
-```bash
-docker-compose exec backend npm run db:seed
-```
-
----
-
 ## 📚 Documentation
 
 - **[README.md](./README.md)** - Complete project documentation
-- **[QUICKSTART.md](./QUICKSTART.md)** - Rapid setup guide
-- **[API_DOCUMENTATION.md](./API_DOCUMENTATION.md)** - API reference
-- **[PROJECT_SUMMARY.md](./PROJECT_SUMMARY.md)** - Project overview
-- **[DEPLOYMENT_CHECKLIST.md](./DEPLOYMENT_CHECKLIST.md)** - Deployment guide
-- **[IMPLEMENTATION_COMPLETE.md](./IMPLEMENTATION_COMPLETE.md)** - Implementation summary
 
 ---
 
@@ -286,12 +248,14 @@ docker-compose exec backend npm run db:seed
 ### Checklist
 
 - [ ] Frontend loads at http://localhost:3000
-- [ ] Apartments are displayed in a grid
-- [ ] Search bar accepts input
-- [ ] Filters can be changed
+- [ ] Apartments are displayed in a responsive grid
+- [ ] Search bar accepts input and results update
+- [ ] All filters work (project, price, bedrooms 1-6, bathrooms 1-6)
 - [ ] Results update when filtering
-- [ ] Clicking an apartment shows details
-- [ ] Pagination works
+- [ ] Clicking an apartment shows full details
+- [ ] Image gallery thumbnails change main image on click
+- [ ] Pagination works and scrolls to top
+- [ ] "Back to Listings" button works
 - [ ] No errors in browser console
 
 ---
@@ -299,7 +263,7 @@ docker-compose exec backend npm run db:seed
 ## 🎯 Project Structure Overview
 
 ```
-nawy-apartment-listing/
+Nawy-Apartments-Assignment/
 ├── backend/            # NestJS API
 ├── frontend/           # Next.js App
 ├── docker-compose.yml  # Docker orchestration
@@ -311,14 +275,17 @@ nawy-apartment-listing/
 
 ## 🌟 Key Features
 
-1. ✅ Browse 25 apartments
-2. ✅ Search by name, unit, or project
-3. ✅ Filter by project, price, beds, baths
-4. ✅ View detailed apartment information
-5. ✅ Responsive design (mobile, tablet, desktop)
-6. ✅ Professional UI inspired by Nawy.com
-7. ✅ RESTful API with pagination
-8. ✅ Docker deployment ready
+1. ✅ Browse 50 apartments across 5 premium projects
+2. ✅ Real-time search by name, unit, or project
+3. ✅ Advanced filters: project, price range, beds (1-6), baths (1-6)
+4. ✅ Interactive image gallery with thumbnail selection
+5. ✅ Detailed apartment information with complete specs
+6. ✅ Fully responsive design (mobile, tablet, desktop)
+7. ✅ Professional UI inspired by Nawy.com
+8. ✅ RESTful API with efficient pagination
+9. ✅ URL-based state for shareable links
+10. ✅ **Auto-seeding** - Database automatically populates on first Docker run
+11. ✅ Docker deployment ready with docker-compose
 
 ---
 

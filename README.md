@@ -36,15 +36,17 @@ A full-stack web application for browsing and discovering luxury apartments in t
 ### Bonus Features (Implemented)
 
 - ✅ **Search functionality** - Search by unit name, unit number, or project
-- ✅ **Advanced filters** - Filter by project, price range, bedrooms, bathrooms
+- ✅ **Advanced filters** - Filter by project, price range, bedrooms (1-6), bathrooms (1-6)
+- ✅ **Interactive image gallery** - Click thumbnails to view different images
 - ✅ **URL-based state** - Shareable links with filters
-- ✅ **Debounced search** - Optimized search performance
+- ✅ **Debounced search** - Optimized search performance (500ms)
 - ✅ **Real-time results** - Instant filter updates
+- ✅ **Visual feedback** - Selected image highlights, hover effects
 
 ## 🏗️ Project Structure
 
 ```
-nawy-apartment-listing/
+Nawy-Apartments-Assignment/
 ├── backend/                    # NestJS backend
 │   ├── src/
 │   │   ├── apartments/        # Apartments module (controller, service, DTOs)
@@ -64,11 +66,13 @@ nawy-apartment-listing/
 │   │   ├── page.tsx           # Home/listing page
 │   │   └── globals.css        # Global styles
 │   ├── components/            # Reusable components
-│   │   ├── ApartmentCard.tsx
-│   │   ├── ApartmentGrid.tsx
-│   │   ├── SearchFilters.tsx
-│   │   ├── Pagination.tsx
-│   │   └── Navbar.tsx
+│   │   ├── ApartmentCard.tsx  # Card with image and details
+│   │   ├── ApartmentGrid.tsx  # Responsive grid layout
+│   │   ├── SearchFilters.tsx  # Advanced search filters
+│   │   ├── ImageGallery.tsx   # Interactive image gallery
+│   │   ├── Pagination.tsx     # Page navigation
+│   │   ├── BackButton.tsx     # Navigation helper
+│   │   └── Navbar.tsx         # App header
 │   ├── lib/
 │   │   ├── api.ts             # API client
 │   │   └── types.ts           # TypeScript types
@@ -93,8 +97,8 @@ nawy-apartment-listing/
 #### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
-cd nawy-apartment-listing
+git clone https://github.com/ahmadalasiri/Nawy-Apartments-Assignment.git
+cd Nawy-Apartments-Assignment
 ```
 
 #### 2. Setup Environment Variables
@@ -168,8 +172,8 @@ Open your browser and navigate to: `http://localhost:3000`
 #### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
-cd nawy-apartment-listing
+git clone https://github.com/ahmadalasiri/Nawy-Apartments-Assignment.git
+cd Nawy-Apartments-Assignment
 ```
 
 #### 2. Setup Environment Variables
@@ -191,26 +195,21 @@ docker-compose up -d
 docker-compose logs -f
 ```
 
-#### 4. Seed the Database
+#### 4. Access the Application
 
-```bash
-# Wait for services to be healthy, then seed the database
-docker-compose exec backend npm run db:seed
-```
-
-#### 5. Access the Application
+> 💡 **Note**: The database automatically seeds with sample data on first run if empty!
 
 - **Frontend**: `http://localhost:3000`
 - **Backend API**: `http://localhost:3001/api/v1`
 - **Health Check**: `http://localhost:3001/api/v1/health`
 
-#### 6. Stop All Services
+#### 5. Stop All Services
 
 ```bash
 docker-compose down
 ```
 
-#### 7. Clean Up (Remove Volumes)
+#### 6. Clean Up (Remove Volumes)
 
 ```bash
 docker-compose down -v
@@ -230,12 +229,12 @@ GET /api/v1/apartments?page=1&limit=12&search=luxury&project=O West&minPrice=200
 
 - `page` (optional): Page number (default: 1)
 - `limit` (optional): Items per page (default: 12)
-- `search` (optional): Search by name, unit number, or project
-- `project` (optional): Filter by project name
-- `minPrice` (optional): Minimum price filter
-- `maxPrice` (optional): Maximum price filter
-- `bedrooms` (optional): Filter by number of bedrooms
-- `bathrooms` (optional): Filter by number of bathrooms
+- `search` (optional): Search by name, unit number, or project (case-insensitive)
+- `project` (optional): Filter by project name (case-insensitive)
+- `minPrice` (optional): Minimum price filter (inclusive)
+- `maxPrice` (optional): Maximum price filter (inclusive)
+- `bedrooms` (optional): Exact number of bedrooms (1-6)
+- `bathrooms` (optional): Exact number of bathrooms (1-6)
 
 **Response:**
 
@@ -258,10 +257,10 @@ GET /api/v1/apartments?page=1&limit=12&search=luxury&project=O West&minPrice=200
     }
   ],
   "meta": {
-    "total": 25,
+    "total": 50,
     "page": 1,
     "limit": 12,
-    "totalPages": 3
+    "totalPages": 5
   }
 }
 ```
@@ -290,18 +289,22 @@ GET /api/v1/apartments/projects
 
 - Clean, modern interface with professional typography
 - Primary color: Blue (#2563eb)
-- Card-based layout with smooth hover effects
+- Card-based layout with smooth hover effects and transitions
 - Responsive grid system (1 col mobile → 2 col tablet → 3 col desktop)
-- High-quality images with proper optimization
+- High-quality images with Next.js Image optimization
+- Interactive image gallery with thumbnail selection
+- Visual feedback on selected images (ring highlight, scale)
 
 ### User Experience
 
+- **Interactive image gallery** - Click any thumbnail to view in main display
 - Instant search with debouncing (500ms)
-- Real-time filter updates
+- Real-time filter updates without page reload
 - URL-based state for shareable links
-- Smooth page transitions
-- Loading states and error handling
-- Empty state messages
+- Smooth page transitions with scroll-to-top
+- Loading states and skeleton screens
+- Comprehensive error handling with user-friendly messages
+- Empty state messages for no results
 
 ---
 
@@ -317,20 +320,24 @@ GET /api/v1/apartments/projects
 
 1. Select a project from the dropdown (e.g., "O West")
 2. Set price range (e.g., min: 2000000, max: 5000000)
-3. Select bedrooms and bathrooms
-4. Results update in real-time
+3. Select bedrooms (1-6) and bathrooms (1-6)
+4. Results update in real-time as you change filters
+5. Try "Clear All" to reset filters
 
 ### Test Pagination
 
 1. Scroll to the bottom of the page
 2. Click "Next" or a page number
 3. Page smoothly scrolls to top with new results
+4. Notice URL updates with current page
 
 ### Test Details Page
 
 1. Click any apartment card
-2. View full details with image gallery
-3. Click "Back to Listings" to return
+2. View full details with **interactive image gallery**
+3. **Click different thumbnail images** to change the main display
+4. Notice the selected thumbnail is highlighted with a blue ring
+5. Click "Back to Listings" to return with filters preserved
 
 ---
 
@@ -390,22 +397,28 @@ npm run lint           # Run linter
 
 ### Backend
 
-- **NestJS architecture** with modular design
-- **Drizzle ORM** for type-safe database queries
-- **Efficient search** using `ilike` for case-insensitive matching
-- **Optimized filtering** with indexed columns
-- **Parallel queries** for pagination metadata
-- **Global validation** with class-validator
-- **Security** with Helmet and rate limiting (Throttler)
+- **NestJS architecture** with modular design and dependency injection
+- **Drizzle ORM** for type-safe database queries with prepared statements
+- **Efficient search** using `ilike` for case-insensitive matching (SQL injection safe)
+- **Optimized filtering** with indexed columns (project, unitNumber)
+- **Parallel queries** for pagination metadata to reduce response time
+- **Global validation** with class-validator and DTOs
+- **Security** with Helmet, CORS, and proper error handling
+- **Type casting** for decimal comparisons in price filtering
+- **Unique constraints** with proper conflict handling
+- **Auto-seeding** - Database automatically seeds on first Docker run if empty
 
 ### Frontend
 
-- **Next.js App Router** with server components
-- **Client-side state management** with URL sync
-- **Debounced search** to reduce API calls
-- **Responsive images** with Next.js Image optimization
-- **SEO-friendly** with proper metadata
+- **Next.js 15 App Router** with server and client components
+- **Interactive UI** with client-side state (ImageGallery, SearchFilters)
+- **Client-side state management** with URL sync for shareable links
+- **Debounced search** (500ms) to reduce API calls
+- **Responsive images** with Next.js Image optimization and blur placeholders
+- **SEO-friendly** with proper metadata and dynamic page titles
 - **Error boundaries** for graceful error handling
+- **Smooth transitions** with hover effects and visual feedback
+- **Reusable components** following React best practices
 
 ---
 
@@ -435,13 +448,10 @@ npm run lint           # Run linter
 cp example.env .env
 # Edit .env with production values
 
-# 2. Build and start
+# 2. Build and start (auto-seeds if database is empty)
 docker-compose up -d
 
-# 3. Seed database
-docker-compose exec backend npm run db:seed
-
-# 4. Access logs
+# 3. Access logs
 docker-compose logs -f
 ```
 

@@ -215,7 +215,7 @@ CREATE INDEX project_unit_idx ON apartments(project, unit_number);
 
 ### Sample Data
 
-- 25 diverse apartments
+- 50 diverse apartments
 - 5 different projects (O West, New Giza, Il Bosco, City Gate, Villette)
 - Price range: 1.6M - 9.5M EGP
 - Various sizes: 1-4 bedrooms
@@ -284,11 +284,8 @@ CREATE INDEX project_unit_idx ON apartments(project, unit_number);
 ### Commands
 
 ```bash
-# Start all services
+# Start all services (auto-seeds if database is empty)
 docker-compose up -d
-
-# Seed database
-docker-compose exec backend npm run db:seed
 
 # View logs
 docker-compose logs -f
@@ -415,5 +412,5 @@ The application is **ready for deployment** and demonstrates:
 **Ready to run with a single command!** 🚀
 
 ```bash
-docker-compose up -d && docker-compose exec backend npm run db:seed
+docker-compose up -d  # Auto-seeds on first run
 ```

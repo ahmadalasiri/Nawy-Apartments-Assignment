@@ -78,10 +78,10 @@ curl "http://localhost:3001/api/v1/apartments?page=1&limit=12&search=luxury&proj
     }
   ],
   "meta": {
-    "total": 25,
+    "total": 50,
     "page": 1,
     "limit": 12,
-    "totalPages": 3
+    "totalPages": 5
   }
 }
 ```

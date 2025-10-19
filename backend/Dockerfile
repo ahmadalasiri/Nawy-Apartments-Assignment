@@ -32,9 +32,13 @@ COPY --from=builder /app/drizzle ./drizzle
 COPY --from=builder /app/drizzle.config.ts ./drizzle.config.ts
 COPY --from=builder /app/node_modules/.bin ./node_modules/.bin
 
+# Copy startup script
+COPY scripts/docker-entrypoint.sh ./scripts/
+RUN chmod +x ./scripts/docker-entrypoint.sh
+
 # Expose port
 EXPOSE 3001
 
-# Start application (migrations run first)
-CMD ["sh", "-c", "npm run db:migrate && npm run start:prod"]
+# Start application (migrations, auto-seed, and start)
+CMD ["./scripts/docker-entrypoint.sh"]
 

@@ -23,7 +23,8 @@ export default function HomePage() {
   const [projects, setProjects] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [backendAvailable, setBackendAvailable] = useState(true);
+  const [isServerError, setIsServerError] = useState(false);
+  const [retryCount, setRetryCount] = useState(0);
 
   // Initialize page and filters from URL - recomputed when searchParams change
   const initialPage = useMemo(() => {
@@ -84,8 +85,6 @@ export default function HomePage() {
 
   // Fetch projects
   useEffect(() => {
-    if (!backendAvailable) return;
-
     // Check cache first
     if (projectsCache) {
       setProjects(projectsCache);
@@ -100,20 +99,13 @@ export default function HomePage() {
       })
       .catch((err) => {
         console.error("Failed to fetch projects:", err);
-        if (err.code === "ERR_NETWORK" || err.code === "ECONNREFUSED") {
-          setBackendAvailable(false);
-        }
+        // Error is already handled by axios interceptor
+        // Just log it, don't block the UI
       });
-  }, [backendAvailable]);
+  }, []);
 
   // Fetch apartments
   useEffect(() => {
-    if (!backendAvailable) {
-      setLoading(false);
-      setError("Unable to connect to server");
-      return;
-    }
-
     const fetchApartments = async () => {
       // Generate cache key for current request
       const cacheKey = generateCacheKey(currentPage, filters);
@@ -130,6 +122,7 @@ export default function HomePage() {
 
       setLoading(true);
       setError(null);
+      setIsServerError(false);
 
       try {
         const response = await apartmentsAPI.getAll({
@@ -141,7 +134,6 @@ export default function HomePage() {
         setApartments(response.data);
         setTotalPages(response.meta.totalPages);
         setTotal(response.meta.total);
-        setBackendAvailable(true);
 
         // Store in cache
         apartmentsCache.set(cacheKey, {
@@ -152,28 +144,16 @@ export default function HomePage() {
       } catch (err: any) {
         console.error("Error fetching apartments:", err);
 
-        // Check if it's a network error (backend not running)
-        if (
-          err.code === "ERR_NETWORK" ||
-          err.code === "ECONNREFUSED" ||
-          !err.response
-        ) {
-          setBackendAvailable(false);
-          setError("Unable to connect to server");
-        } else {
-          setError(
-            err.response?.data?.message ||
-              err.message ||
-              "Failed to fetch apartments"
-          );
-        }
+        // Use the error message from interceptor or fallback
+        setError(err.userMessage || err.message || "Failed to fetch apartments");
+        setIsServerError(!!err.isServerError);
       } finally {
         setLoading(false);
       }
     };
 
     fetchApartments();
-  }, [filters, currentPage, backendAvailable, generateCacheKey]);
+  }, [filters, currentPage, generateCacheKey, retryCount]);
 
   const handleFiltersChange = useCallback(
     (newFilters: Filters) => {
@@ -242,7 +222,7 @@ export default function HomePage() {
       )}
 
       {/* Error State */}
-      {error && !backendAvailable && (
+      {error && isServerError && (
         <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 text-center">
           <svg
             className="w-16 h-16 mx-auto mb-4 text-yellow-600"
@@ -260,13 +240,12 @@ export default function HomePage() {
           <h3 className="text-xl font-semibold text-gray-900 mb-2">
             Server Connection Required
           </h3>
-          <p className="text-gray-600 mb-4">
-            Please start the backend server to view apartments
-          </p>
+          <p className="text-gray-600 mb-4">{error}</p>
           <button
             onClick={() => {
-              setBackendAvailable(true);
               setError(null);
+              setIsServerError(false);
+              setRetryCount((prev) => prev + 1);
             }}
             className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
@@ -275,7 +254,7 @@ export default function HomePage() {
         </div>
       )}
 
-      {error && backendAvailable && (
+      {error && !isServerError && (
         <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
           <p className="text-red-800">{error}</p>
         </div>

@@ -1,5 +1,6 @@
 import axios from "axios";
 import type { Apartment, PaginatedResponse, SearchFilters } from "./types";
+import { isServerUnavailable } from "./errorHandler";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
 
@@ -10,6 +11,23 @@ const api = axios.create({
     "Content-Type": "application/json",
   },
 });
+
+// Response interceptor to handle errors globally
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    // Check if server is unavailable (network error, 5xx, timeout)
+    if (isServerUnavailable(error)) {
+      // Add user-friendly message for server unavailability
+      error.userMessage =
+        "Server is currently unavailable. Please try again later.";
+      error.isServerError = true;
+    }
+
+    // Pass through with original error for business logic errors (4xx)
+    return Promise.reject(error);
+  }
+);
 
 // Apartments API
 export const apartmentsAPI = {

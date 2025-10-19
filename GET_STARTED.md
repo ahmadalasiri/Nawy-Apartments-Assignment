@@ -314,8 +314,8 @@ Nawy-Apartments-Assignment/
 ## 🙋 Need Help?
 
 1. Check [README.md](./README.md) for detailed documentation
-2. See [DEPLOYMENT_CHECKLIST.md](./DEPLOYMENT_CHECKLIST.md) for troubleshooting
-3. Review [API_DOCUMENTATION.md](./API_DOCUMENTATION.md) for API details
+2. Review [API_DOCUMENTATION.md](./API_DOCUMENTATION.md) for API details
+3. View logs: `docker-compose logs -f`
 
 ---
 

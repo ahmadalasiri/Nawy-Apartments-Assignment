@@ -1,8 +1,8 @@
 import { Metadata } from "next";
-import Image from "next/image";
 import { apartmentsAPI } from "@/lib/api";
 import { notFound } from "next/navigation";
 import BackButton from "@/components/BackButton";
+import ImageGallery from "@/components/ImageGallery";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -60,40 +60,7 @@ export default async function ApartmentDetailPage({ params }: PageProps) {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Image Gallery */}
-        <div className="space-y-4">
-          <div className="relative h-96 w-full rounded-lg overflow-hidden bg-gray-200">
-            <Image
-              src={images[0]}
-              alt={apartment.name}
-              fill
-              className="object-cover"
-              priority
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-          </div>
-
-          {images.length > 1 && (
-            <div className="grid grid-cols-3 gap-4">
-              {images.slice(1, 4).map((image, index) => (
-                <div
-                  key={index}
-                  className="relative h-24 w-full rounded-lg overflow-hidden bg-gray-200"
-                >
-                  <Image
-                    src={image}
-                    alt={`${apartment.name} - Image ${index + 2}`}
-                    fill
-                    loading="lazy"
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 33vw, 16vw"
-                    placeholder="blur"
-                    blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI2UwZTBlMCIvPjwvc3ZnPg=="
-                  />
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+        <ImageGallery images={images} name={apartment.name} />
 
         {/* Details */}
         <div>

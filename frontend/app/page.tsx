@@ -1,12 +1,19 @@
 "use client";
 
-import { useState, useEffect, useMemo, useCallback, useRef } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import SearchFilters from "@/components/SearchFilters";
 import ApartmentGrid from "@/components/ApartmentGrid";
 import Pagination from "@/components/Pagination";
 import { apartmentsAPI } from "@/lib/api";
 import type { Apartment, SearchFilters as Filters } from "@/lib/types";
+
+// Module-level cache that persists across component re-mounts
+const apartmentsCache = new Map<
+  string,
+  { data: Apartment[]; totalPages: number; total: number }
+>();
+let projectsCache: string[] | null = null;
 
 export default function HomePage() {
   const router = useRouter();
@@ -17,12 +24,6 @@ export default function HomePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [backendAvailable, setBackendAvailable] = useState(true);
-
-  // Use useRef to persist cache across re-renders without causing re-fetches
-  const apartmentsCacheRef = useRef<
-    Map<string, { data: Apartment[]; totalPages: number; total: number }>
-  >(new Map());
-  const projectsCacheRef = useRef<string[] | null>(null);
 
   // Initialize page and filters from URL - recomputed when searchParams change
   const initialPage = useMemo(() => {
@@ -86,8 +87,8 @@ export default function HomePage() {
     if (!backendAvailable) return;
 
     // Check cache first
-    if (projectsCacheRef.current) {
-      setProjects(projectsCacheRef.current);
+    if (projectsCache) {
+      setProjects(projectsCache);
       return;
     }
 
@@ -95,7 +96,7 @@ export default function HomePage() {
       .getProjects()
       .then((data) => {
         setProjects(data);
-        projectsCacheRef.current = data;
+        projectsCache = data;
       })
       .catch((err) => {
         console.error("Failed to fetch projects:", err);
@@ -118,7 +119,7 @@ export default function HomePage() {
       const cacheKey = generateCacheKey(currentPage, filters);
 
       // Check cache first
-      const cachedData = apartmentsCacheRef.current.get(cacheKey);
+      const cachedData = apartmentsCache.get(cacheKey);
       if (cachedData) {
         setApartments(cachedData.data);
         setTotalPages(cachedData.totalPages);
@@ -143,7 +144,7 @@ export default function HomePage() {
         setBackendAvailable(true);
 
         // Store in cache
-        apartmentsCacheRef.current.set(cacheKey, {
+        apartmentsCache.set(cacheKey, {
           data: response.data,
           totalPages: response.meta.totalPages,
           total: response.meta.total,
@@ -179,7 +180,7 @@ export default function HomePage() {
       setFilters(newFilters);
       setCurrentPage(1);
       // Clear cache when filters change
-      apartmentsCacheRef.current.clear();
+      apartmentsCache.clear();
 
       // Update URL
       const params = new URLSearchParams();

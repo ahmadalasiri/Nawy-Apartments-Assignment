@@ -3,17 +3,23 @@ import { apartmentsAPI } from "@/lib/api";
 import { notFound } from "next/navigation";
 import BackButton from "@/components/BackButton";
 import ImageGallery from "@/components/ImageGallery";
+import { cache } from "react";
 
 interface PageProps {
   params: Promise<{ id: string }>;
 }
+
+// Cache the apartment fetch to prevent duplicate requests between generateMetadata and the component
+const getApartment = cache(async (id: string) => {
+  return apartmentsAPI.getById(id);
+});
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   try {
     const { id } = await params;
-    const apartment = await apartmentsAPI.getById(id);
+    const apartment = await getApartment(id);
     return {
       title: `${apartment.name} - Nawy`,
       description: apartment.description,
@@ -30,7 +36,7 @@ export default async function ApartmentDetailPage({ params }: PageProps) {
 
   try {
     const { id } = await params;
-    apartment = await apartmentsAPI.getById(id);
+    apartment = await getApartment(id);
   } catch {
     notFound();
   }

@@ -284,7 +284,7 @@ const apartments = [
     bathrooms: 2,
     area: 110,
     images: [
-      'https://images.unsplash.com/photo-1600566752229-250ed79470d1?w=800',
+      'https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800',
       'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800',
       'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800',
       'https://images.unsplash.com/photo-1556020685-ae41abfc9365?w=800',
@@ -392,7 +392,7 @@ const apartments = [
       'https://images.unsplash.com/photo-1600566753151-384129cf4e3e?w=800',
       'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800',
       'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800',
-      'https://images.unsplash.com/photo-1600566752229-250ed79470d1?w=800',
+      'https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800',
     ],
   },
   {
@@ -569,7 +569,7 @@ const apartments = [
       'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800',
       'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800',
       'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800',
-      'https://images.unsplash.com/photo-1600566752229-250ed79470d1?w=800',
+      'https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800',
     ],
   },
   {
@@ -794,7 +794,7 @@ const apartments = [
     bathrooms: 2,
     area: 150,
     images: [
-      'https://images.unsplash.com/photo-1600566752229-250ed79470d1?w=800',
+      'https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800',
       'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800',
       'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800',
       'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800',
@@ -831,7 +831,7 @@ const apartments = [
     area: 115,
     images: [
       'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800',
-      'https://images.unsplash.com/photo-1600566752229-250ed79470d1?w=800',
+      'https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800',
       'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800',
       'https://images.unsplash.com/photo-1556020685-ae41abfc9365?w=800',
     ],
@@ -924,11 +924,21 @@ async function seed() {
 
     console.log(`✅ Successfully seeded ${apartments.length} apartments!`);
     console.log('📊 Summary:');
-    console.log(`   - O West: ${apartments.filter((a) => a.project === 'O West').length}`);
-    console.log(`   - New Giza: ${apartments.filter((a) => a.project === 'New Giza').length}`);
-    console.log(`   - Il Bosco: ${apartments.filter((a) => a.project === 'Il Bosco').length}`);
-    console.log(`   - City Gate: ${apartments.filter((a) => a.project === 'City Gate').length}`);
-    console.log(`   - Villette: ${apartments.filter((a) => a.project === 'Villette').length}`);
+    console.log(
+      `   - O West: ${apartments.filter((a) => a.project === 'O West').length}`,
+    );
+    console.log(
+      `   - New Giza: ${apartments.filter((a) => a.project === 'New Giza').length}`,
+    );
+    console.log(
+      `   - Il Bosco: ${apartments.filter((a) => a.project === 'Il Bosco').length}`,
+    );
+    console.log(
+      `   - City Gate: ${apartments.filter((a) => a.project === 'City Gate').length}`,
+    );
+    console.log(
+      `   - Villette: ${apartments.filter((a) => a.project === 'Villette').length}`,
+    );
   } catch (error) {
     console.error('❌ Error seeding database:', error);
     throw error;

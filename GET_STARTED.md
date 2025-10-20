@@ -323,15 +323,3 @@ Nawy-Apartments-Assignment/
 1. Check [README.md](./README.md) for detailed documentation
 2. Review [API_DOCUMENTATION.md](./API_DOCUMENTATION.md) for API details
 3. View logs: `docker-compose logs -f`
-
----
-
-## 🎉 You're All Set!
-
-The application is ready to use. Enjoy exploring!
-
-**Access the app**: http://localhost:3000
-
----
-
-**Built with ❤️ for Nawy Software Engineer Hiring Assignment**

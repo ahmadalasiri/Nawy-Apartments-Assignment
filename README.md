@@ -9,6 +9,14 @@ A full-stack web application for browsing and discovering luxury apartments in t
 
 Experience the live application deployed on a VPS with full functionality including search, filters, and interactive image galleries.
 
+### Quick Start with Docker
+
+```bash
+docker-compose up --build
+```
+
+This will build and start all services (PostgreSQL, Backend, Frontend) with automatic database seeding.
+
 ## 🚀 Tech Stack
 
 ### Backend
@@ -482,21 +490,3 @@ npm ci
 npm run build
 npm run start
 ```
-
----
-
-## 📄 License
-
-This project is created as part of a hiring assignment for Nawy.
-
----
-
-## 👨‍💻 Author
-
-Created with ❤️ for Nawy Software Engineer Hiring Assignment
-
----
-
-## 📞 Support
-
-For questions or issues, please contact the development team.

@@ -501,11 +501,8 @@ Then select environment in VS Code REST Client.
 You can also use these alternatives to test the API:
 
 - **Postman**: Import via OpenAPI/Swagger
-- **Insomnia**: Similar to Postman
 - **Thunder Client**: VS Code extension
 - **curl**: Command-line tool
-- **HTTPie**: Modern curl alternative
-- **Bruno**: Open-source API client
 
 ### Example curl Command
 
@@ -513,23 +510,3 @@ You can also use these alternatives to test the API:
 curl -X GET "http://localhost:3001/api/v1/apartments?page=1&limit=12" \
   -H "Content-Type: application/json"
 ```
-
-## Additional Resources
-
-- **NestJS Documentation**: https://docs.nestjs.com
-- **REST Client Extension**: https://marketplace.visualstudio.com/items?itemName=humao.rest-client
-- **Drizzle ORM**: https://orm.drizzle.team
-- **PostgreSQL**: https://www.postgresql.org/docs
-
-## Support
-
-If you encounter issues:
-
-1. Check backend logs in terminal
-2. Verify database connection
-3. Review this README for troubleshooting
-4. Check example.env for configuration
-
----
-
-**Happy Testing! 🏠**
